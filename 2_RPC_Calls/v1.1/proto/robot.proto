@@ -1,0 +1,46 @@
+syntax = "proto3";
+// This says: "use modern protobuf rules" (proto3 is the current standard, 2026)+
+
+option java_package = "ds.robot.rpc";
+// This tells protoc: "put all generated Java classes into this package"
+
+option java_multiple_files = true;
+// Each message and service gets its own .java file (cleaner)
+
+message LoginRequest {
+  // This is the data structure the ROBOT sends to the CONTROLLER when it starts
+  string robot_id = 1;          // unique name of this robot, like "robot-007"
+  string host = 2;              // IP address or hostname where THIS robot listens for gRPC
+  int32 grpc_port = 3;          // port number on which robot's gRPC server is listening
+}
+
+message LoginResponse {
+  // Controller's answer to the robot
+  bool success = 1;             // true = welcome, false = error
+  string assigned_id = 2;       // controller can give you a different ID if it wants
+  string message = 3;           // human-readable text, like "Welcome!" or "Too many robots"
+}
+
+message HeartbeatRequest {
+  // What robot sends every few seconds to say "I'm still alive!"
+  string robot_id = 1;          // which robot is talking
+  int64 timestamp_ms = 2;       // when this message was sent, use System.currentTimeMillis() (int64 = long)
+}
+
+message HeartbeatAck {
+  // Controller's reply to heartbeat
+  bool accepted = 1;            // usually true, false if something is wrong
+  string status = 2;            // "OK", "SLOW", "TOO_MANY", "SHUTTING_DOWN", etc.
+}
+
+// numbers are unique identifiers for each field (backwards/forwards compatibility)
+
+service RobotService {
+  // This defines the actual remote functions (RPC methods)
+
+  rpc Login(LoginRequest) returns (LoginResponse);
+  // Robot calls this once at startup to register itself
+
+  rpc Heartbeat(HeartbeatRequest) returns (HeartbeatAck);
+  // Robot calls this every ~5–30 seconds to stay registered
+}

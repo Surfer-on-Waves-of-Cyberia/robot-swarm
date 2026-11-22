@@ -1,0 +1,137 @@
+version: "3.9"
+
+services:
+  controller-server:
+    build: .
+    container_name: controller_server
+    ports:
+      - "1243:1243"
+      - "9524:9524"
+    command: ["java", "-cp", "src:lib/*", "ds.robot.http.ControllerServer"]
+
+  controller-client:
+    build: .
+    container_name: controller_client
+    depends_on:
+      - controller-server
+    command: ["./start-client.sh"]
+
+  robot1:
+    build: .
+    container_name: robot1
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R1
+      - ROBOT_PORT=10001
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot2:
+    build: .
+    container_name: robot2
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R2
+      - ROBOT_PORT=10002
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot3:
+    build: .
+    container_name: robot3
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R3
+      - ROBOT_PORT=10003
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot4:
+    build: .
+    container_name: robot4
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R4
+      - ROBOT_PORT=10004
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot5:
+    build: .
+    container_name: robot5
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R5
+      - ROBOT_PORT=10005
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot6:
+    build: .
+    container_name: robot6
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R6
+      - ROBOT_PORT=10006
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot7:
+    build: .
+    container_name: robot7
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R7
+      - ROBOT_PORT=10007
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot8:
+    build: .
+    container_name: robot8
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R8
+      - ROBOT_PORT=10008
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot9:
+    build: .
+    container_name: robot9
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R9
+      - ROBOT_PORT=10009
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]
+
+  robot10:
+    build: .
+    container_name: robot10
+    depends_on:
+      - controller-server
+    environment:
+      - ROBOT_ID=R10
+      - ROBOT_PORT=10010
+      - CONTROLLER_HOST=controller-server
+      - CONTROLLER_PORT=9524
+    command: ["java", "-cp", "src:lib/*", "ds.robot.rpc.RobotClient"]

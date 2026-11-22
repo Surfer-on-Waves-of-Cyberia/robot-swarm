@@ -1,0 +1,59 @@
+Attaching to controller_client, controller_server
+controller_server  | Waiting for connections on port 1243...
+controller_client  | --- VALID CASES ---
+controller_client  | HTTP/1.0 200 OK
+controller_client  | Content-Type: json
+controller_client  | Content-Length: 21
+controller_client  | 
+controller_client  | { "robotsActive": 5 }
+controller_client  | RTT GET /status = 33.107591 ms
+controller_client  | HTTP/1.0 200 OK
+controller_client  | Content-Type: json
+controller_client  | Content-Length: 21
+controller_client  | 
+controller_client  | { "captain": "King" }
+controller_client  | RTT GET /captain = 1.596643 ms
+controller_client  | HTTP/1.0 200 OK
+controller_client  | Content-Type: json
+controller_client  | Content-Length: 18
+controller_client  | 
+controller_client  | { "health": "OK" }
+controller_client  | RTT GET /health = 1.424561 ms
+controller_client  | HTTP/1.0 200 OK
+controller_client  | Content-Type: json
+controller_client  | Content-Length: 53
+controller_client  | 
+controller_client  | { "leBegun": true, "body": "Start Leader Election!" }
+controller_client  | RTT POST /le = 8.290517 ms
+controller_client  | --- INVALID CASES ---
+controller_client  | HTTP/1.0 405 Method Not Allowed
+controller_client  | Content-Type: text/plain
+controller_client  | Content-Length: 19
+controller_client  | 
+controller_client  | Only GET is allowed
+controller_client  | HTTP/1.0 405 Method Not Allowed
+controller_client  | Content-Type: text/plain
+controller_client  | Content-Length: 19
+controller_client  | 
+controller_client  | Only GET is allowed
+controller_client  | HTTP/1.0 405 Method Not Allowed
+controller_client  | Content-Type: text/plain
+controller_client  | Content-Length: 19
+controller_client  | 
+controller_client  | Only GET is allowed
+controller_client  | HTTP/1.0 405 Method Not Allowed
+controller_client  | Content-Type: text/plain
+controller_client  | Content-Length: 20
+controller_client  | 
+controller_client  | Only POST is allowed
+controller_client  | HTTP/1.0 404 Not Found
+controller_client  | Content-Type: text-plain
+controller_client  | Content-Length: 14
+controller_client  | 
+controller_client  | Path not found
+[Kcontroller_client exited with code 0
+Gracefully Stopping... press Ctrl+C again to force
+[K Container controller_client  [32mStopping[0m
+[K Container controller_client  [32mStopped[0m
+[K Container controller_server  [32mStopping[0m
+[K Container controller_server  [32mStopped[0m

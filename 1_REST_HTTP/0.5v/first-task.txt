@@ -1,0 +1,27 @@
+1. First version of Controller.
+2. REST-Interface via HTTP requests (POST and GET).
+2.1 Without external libraries.
+3. Internal data structure.
+4. Interfaces for following functionalities:
+4.1. Get the status of the system (f.e. how much Robots are active?)
+4.2. Get the current capitan.
+4.3. Get the status of the Controller (f.e. Health-Check).
+4.4. Post new LE.
+5. Other requests should have correct error responses.
+6. Testing the performance.
+6.1. Client-side Round-Trip-Time (RTT) of the HTTP POST request.
+6.2. Statistical validation.
+6.3. Measurement protocol.
+7. Docker Compose and GitLab.
+8. Presentation.
+9. Deadline: 15.12.2025
+
+glpat-2yNW0LPuVPAsnogmeY_vBG86MQp1OmlodAk.01.0z06wd85t
+
+
+7. Containerization
+Once your server and client work locally:
+- Create a Dockerfile for each (controller + test client).
+- Use docker-compose.yml to define both containers and shared network.
+You can then test communication between them
+(use service names instead of localhost).

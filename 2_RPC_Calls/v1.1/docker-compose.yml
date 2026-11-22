@@ -1,0 +1,18 @@
+services:
+  controller-server:
+    build: .
+    container_name: controller_server
+    ports:
+      - "1243:1243"
+      - "9524:9524"
+    command: ["java", "-cp", "src", "ControllerServer"]
+
+  controller-client:
+    build: .
+    container_name: controller_client
+    depends_on:
+      - controller-server
+    command: ["java", "-cp", "src", "ControllerClient", "controller-server", "1243"]
+    environment:
+      - CONTROLLER_HOST=controller-server
+

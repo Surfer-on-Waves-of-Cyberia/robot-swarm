@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  controller-server:
+    build: .
+    container_name: controller_server
+    ports:
+      - "1243:1243"
+      - "9524:9524"
+    command: ["java", "-cp", "src:lib/*", "ds.robot.http.ControllerServer"]
+
+  controller-client:
+    build: .
+    container_name: controller_client
+    depends_on:
+        - controller-server
+        - robot-simulation
+    command: ["./start-client.sh"]
+
+
+  robot-simulation:
+    build: .
+    container_name: robot_simulation
+    depends_on:
+      - controller-server
+    ports:
+      - "10001-10010:10001-10010"
+    # static container names for each robot?
+    command: ["java", "-cp", "src:lib/*", "ds.robot.http.RobotSimulation"]
